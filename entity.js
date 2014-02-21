@@ -27,7 +27,7 @@ Entity.prototype.update = function()
 
 Entity.prototype.draw = function(context)
 {
-	context.fillStyle = '#fff';
+	context.fillStyle = '#00cc00';
 	context.fillRect(this.x,this.y, this.width, this.height);
 }
 

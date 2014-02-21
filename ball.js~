@@ -2,8 +2,8 @@ function Ball()
 {
 	Entity.call(this);
 
-	this.width = 20;
-	this.height = 20;
+	this.width = 40;
+	this.height = 40;
 	
 	this.reset();
 	
@@ -12,15 +12,24 @@ function Ball()
 Ball.prototype = Object.create(Entity.prototype);
 Ball.prototype.constructor = Ball;
 
+Ball.prototype.draw = function(context)
+{
+	
+	context.fillStyle = '#00cc00';
+	
+	context.beginPath();
+	context.arc(this.x, this.y , this.width, 0, Math.PI*2, true); 
+	context.closePath();
+	context.fill();
+}
 
 Ball.prototype.reset = function()
 {
 	this.x = game.width / 2 - this.width;
 	this.y = game.height /2 - this.height;
 	
-	var min = -5, max =5;
-	this.yVelocity = Math.floor(Math.random() * (max - min +1) + min);
-	this.xVelocity = Math.random()>0.5? 5 : -5;
+	this.yVelocity = Math.random()>0.5? -20 :20;
+	this.xVelocity = Math.random()>0.5? 8 : -8;
 }
 
 
@@ -39,7 +48,7 @@ Ball.prototype.update = function() {
 	if(this.x <0)
 	{
 		game.bot.score+=1;
-		this.reset;
+		this.reset();
 	}
   
   if(this.intersect(game.bot))

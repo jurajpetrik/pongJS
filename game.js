@@ -3,8 +3,8 @@ function Game(canvas)
   var self = this;
 
   this.context = canvas.getContext("2d");
-	this.width = canvas.width;
-	this.height = canvas.height;
+	this.width = window.innerWidth;
+	this.height = window.innerHeight;
 
 	// Keep track of key states
 	
