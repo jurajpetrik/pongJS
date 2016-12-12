@@ -1,21 +1,22 @@
 //entity "class" for a game entity
 
-function Entity() {
+function Entity(fillColor) {
 
 	//position
 	this.x = 0;
 	this.y = 0;
-	
+
 	//dimension
-	
+
 	this.width = 0;
 	this.height =0;
-	
+
 	//velocity
-	
+
 	this.xVelocity = 0;
 	this.yVelocity = 0;
-	
+
+  this.fillColor = '#00cc00';
 }
 
 //entities are expected to override this method
@@ -27,7 +28,7 @@ Entity.prototype.update = function()
 
 Entity.prototype.draw = function(context)
 {
-	context.fillStyle = '#00cc00';
+	context.fillStyle = this.fillColor;
 	context.fillRect(this.x,this.y, this.width, this.height);
 }
 
@@ -41,4 +42,4 @@ Entity.prototype.intersect = function(other)
          this.x + this.width > other.x &&
          this.x < other.x + other.width);
 }
-	
+
