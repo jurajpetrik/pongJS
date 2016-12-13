@@ -11,9 +11,20 @@ canvas { display:block; } /* To remove the scrollbars */
 
 #overlay {
   position: absolute;
-  font: 40px monospace;
-  left: 50%;
   top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  font: 30px monospace;
+}
+
+
+/* to show the canvas bounds */
+canvas {
+  background: #000;
+}
+  width: 100px; /* Need a specific value to work */
+  height: 100px; /* Need a specific value to work */
+  font: 40px monospace;
 }
 
 
