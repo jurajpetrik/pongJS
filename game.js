@@ -18,9 +18,8 @@ function Game(canvas)
     //if keyState was changed
     if(keyName)
     {
-      self.userInput[keyName] = e.type === 'keydown';
       e.preventDefault();
-
+      self.userInput[keyName] = e.type === 'keydown';
     }
   });
 }
@@ -32,8 +31,10 @@ Game.keys = {
   38: 'moveUp',
   39: 'moveRight',
   40: 'moveDown',
+  72: 'moveLeft',
   74: 'moveDown',
   75: 'moveUp',
+  76: 'moveRight',
 }
 
 Game.prototype.start = function() {
@@ -43,8 +44,8 @@ Game.prototype.start = function() {
     interval = 1000/fps;
 
   setInterval(function() {
-      self.update();
-      self.draw();
+    self.draw();
+    self.update();
   }
     ,interval);
 };

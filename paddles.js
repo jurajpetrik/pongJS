@@ -38,7 +38,6 @@ Player.prototype.constructor = Player;
 Player.prototype.update = function()
 {
 
-
   if(game.userInput.moveUp)
   {
     this.yVelocity = - this.speed;
@@ -50,6 +49,18 @@ Player.prototype.update = function()
   else
   {
     this.yVelocity = 0;
+  }
+
+  if(game.userInput.moveLeft) {
+    this.xVelocity = - this.speed;
+  }
+
+  else if(game.userInput.moveRight) {
+    this.xVelocity = this.speed;
+  }
+
+  else {
+    this.xVelocity = 0;
   }
 
   Paddle.prototype.update.apply(this, arguments);
