@@ -105,5 +105,5 @@ Bot.prototype.goFaster = function() {
 
 Bot.prototype.goSlower = function() {
   this.speed--;
-  this.speed = Math.min(0, this.speed);
+  this.speed = Math.max(0, this.speed);
 }
