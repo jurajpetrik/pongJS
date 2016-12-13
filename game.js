@@ -11,12 +11,16 @@ function Game(canvas)
   // Keep track of key states
 
   this.userInput = {};
+  this.userInterrupt = {};
 
   var self = this;
   $(canvas).on('keydown keyup', function(e) {
     //Convert key code to key name
     var keyName = Game.keys[e.which];
 
+    if (e.type === 'keydown') {
+      self.userInterrupt[keyName] = true;
+    }
     //if keyState was changed
     if(keyName)
     {
@@ -48,6 +52,7 @@ Game.prototype.start = function() {
   setInterval(function() {
     self.draw();
     self.update();
+    self.userInterrupt = {};
   }
     ,interval);
 };
@@ -57,10 +62,9 @@ Game.prototype.togglePause = function() {
 }
 
 Game.prototype.update = function() {
-  if (this.userInput.togglePause) {
+  if (this.userInterrupt.togglePause) {
     this.togglePause();
   }
-
   if (this.paused) return;
   this.entities.forEach(function(entity) {
     if (entity.update)
