@@ -1,19 +1,3 @@
-function Background() {}
-
-Background.prototype.draw = function(context)
-{
-  context.fillStyle = '#000';
-  context.fillRect(0,0,game.width, game.height);
-
-  context.fillStyle = '#00cc00';
-  context.font = '40px monospace';
-
-  var scoreText = game.player.score+' : '+game.bot.score;
-  context.fillText(scoreText, game.width/2,game.height/2);
-
-}
-
-
 function getFullCanvas() {
   var canvas = document.getElementById('canvas'),
     context = canvas.getContext('2d');
@@ -30,14 +14,14 @@ function getFullCanvas() {
   return canvas;
 }
 
-var	game = new Game(getFullCanvas());
+var canvas = getFullCanvas();
+var game = new Game(canvas);
 
 game.entities = [
-  new Background(),
-  game.ball = new Ball(),
-  game.player = new Player(),
-  game.bot = new Bot()
-];
+    new Background(canvas),
+    game.ball = new Ball(),
+    game.player = new Player(),
+    game.bot = new Bot()
+]
 
 game.start();
-canvas.focus();

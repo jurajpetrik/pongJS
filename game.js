@@ -1,7 +1,6 @@
 function Game(canvas)
 {
-  var self = this;
-
+  this.canvas = canvas;
   this.context = canvas.getContext("2d");
   this.width = window.innerWidth;
   this.height = window.innerHeight;
@@ -10,6 +9,7 @@ function Game(canvas)
 
   this.keyPressed = {};
 
+  var self = this;
   $(canvas).on('keydown keyup', function(e) {
     //Convert key code to key name
     var keyName = Game.keys[e.which];
@@ -36,6 +36,7 @@ Game.keys = {
 }
 
 Game.prototype.start = function() {
+  canvas.focus();
   var self = this,
     fps = 60,
     interval = 1000/fps;

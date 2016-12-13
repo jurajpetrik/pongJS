@@ -4,7 +4,7 @@ function Ball()
 
   this.width = 20;
   this.height = 20;
-  // this.fillColor = '#000000';
+  this.fillColor = '#fff';
 
   this.reset();
 
