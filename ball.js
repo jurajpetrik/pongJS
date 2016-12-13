@@ -63,9 +63,16 @@ Ball.prototype.update = function() {
   if(hitter)
   {
     this.xVelocity *= -1.1;
-    // this.yVelocity *= -1.1;
-
+    this.fillColor = randColor();
   }
 
   Entity.prototype.update.apply(this, arguments); //super
+}
+
+function randHex() {
+    return (Math.floor(Math.random() * 56) + 200).toString(16);
+}
+
+function randColor() {
+    return "#" +randHex() + "" + randHex() + "" + randHex();
 }
