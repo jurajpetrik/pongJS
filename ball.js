@@ -4,7 +4,6 @@ function Ball()
 
   this.width = 20;
   this.height = 20;
-  this.fillColor = '#fff';
 
   this.reset();
 
@@ -15,8 +14,7 @@ Ball.prototype.constructor = Ball;
 
 Ball.prototype.draw = function(context)
 {
-
-  context.fillStyle = this.fillColor;
+  context.fillStyle = game.fillColor.toHex();
 
   context.beginPath();
   context.arc(this.x, this.y , this.width/2, 0, Math.PI*2, true);
@@ -35,6 +33,8 @@ Ball.prototype.reset = function()
 
 
 Ball.prototype.update = function() {
+  Entity.prototype.update.apply(this, arguments); //super
+
   if (this.y > game.height- (this.height) || this.y < 0)
   {
     this.yVelocity *= -1;
@@ -63,16 +63,7 @@ Ball.prototype.update = function() {
   if(hitter)
   {
     this.xVelocity *= -1.1;
-    this.fillColor = randColor();
+    game.ballHit();
   }
 
-  Entity.prototype.update.apply(this, arguments); //super
-}
-
-function randHex() {
-    return (Math.floor(Math.random() * 56) + 200).toString(16);
-}
-
-function randColor() {
-    return "#" +randHex() + "" + randHex() + "" + randHex();
 }

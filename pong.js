@@ -25,3 +25,13 @@ game.entities = [
 ]
 
 game.start();
+
+function Color(red, green, blue) {
+  this.red = red;
+  this.green = green;
+  this.blue = blue;
+}
+
+Color.prototype.toHex = function() {
+  return "#" + this.red.toString(16) + this.green.toString(16) + this.blue.toString(16);
+}

@@ -5,7 +5,7 @@ Background.prototype.draw = function(context)
   context.fillStyle = '#000';
   context.fillRect(0,0,game.width, game.height);
 
-  context.fillStyle = '#00cc00';
+  context.fillStyle = game.fillColor.toHex();
   context.font = '40px monospace';
 
   var scoreText = game.player.score+' : '+game.bot.score;

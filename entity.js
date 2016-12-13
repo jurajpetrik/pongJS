@@ -10,8 +10,6 @@ function Entity() {
 
   this.xVelocity = 0;
   this.yVelocity = 0;
-
-  this.fillColor = '#00cc00';
 }
 
 //entities are expected to override this method
@@ -23,7 +21,7 @@ Entity.prototype.update = function()
 
 Entity.prototype.draw = function(context)
 {
-	context.fillStyle = this.fillColor;
+	context.fillStyle = game.fillColor.toHex();
 	context.fillRect(this.x,this.y, this.width, this.height);
 }
 

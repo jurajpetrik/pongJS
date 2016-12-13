@@ -5,6 +5,7 @@ function Game(canvas)
   this.width = window.innerWidth;
   this.height = window.innerHeight;
   this.paused = false;
+  this.fillColor = new Color(173, 216, 230);
 
   // Keep track of key states
 
@@ -78,4 +79,25 @@ Game.prototype.draw = function() {
       entity.draw(self.context);
     }
   });
+}
+
+Game.prototype.ballHit = function() {
+  this.fillColor = randColor();
+}
+
+function randColor() {
+  mix = new Color(173, 216, 230);
+
+  var red = randomInt(255);
+  var green = randomInt(255);
+  var blue = randomInt(255);
+
+  red = Math.floor((mix.red + red) / 2);
+  green = Math.floor((mix.green + green) / 2);
+  blue = Math.floor((mix.blue + blue) / 2);
+  return new Color(red, green, blue);
+}
+
+function randomInt(n) {
+  return Math.floor(Math.random() * n) + 1;
 }
