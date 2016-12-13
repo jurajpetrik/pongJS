@@ -7,6 +7,7 @@ function Game(canvas)
   this.paused = false;
   this.fillColor = new Color(173, 216, 230);
   this.bumpSound = new Audio("./bumpsound.wav"); // buffers automatically when created
+  this.missSound = new Audio("./missSound.wav"); // buffers automatically when created
 
   // Keep track of key states
 
@@ -93,6 +94,12 @@ Game.prototype.ballHitWall = function(paddle) {
 Game.prototype.ballHitPaddle = function(paddle) {
   this.fillColor = randColor();
   this.bumpSound.play();
+}
+
+Game.prototype.playerMissedBall = function(paddle) {
+  paddle.score++;
+  this.ball.reset();
+  this.missSound.play();
 }
 
 function randColor() {

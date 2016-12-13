@@ -44,13 +44,11 @@ Ball.prototype.update = function() {
 
   if(this.x > (game.width-this.width))
   {
-    game.player.score+=1;
-    this.reset();
+    game.playerMissedBall(game.player);
   }
   if(this.x <0)
   {
-    game.bot.score+=1;
-    this.reset();
+    game.playerMissedBall(game.bot);
   }
 
   if(this.intersect(game.bot))
