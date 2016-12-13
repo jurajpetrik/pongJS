@@ -4,6 +4,7 @@ function Game(canvas)
   this.context = canvas.getContext("2d");
   this.width = window.innerWidth;
   this.height = window.innerHeight;
+
   this.paused = false;
   this.fillColor = new Color(173, 216, 230);
   this.bumpSound = new Audio("./bumpsound.wav"); // buffers automatically when created
@@ -96,8 +97,16 @@ Game.prototype.ballHitPaddle = function(paddle) {
   this.bumpSound.play();
 }
 
-Game.prototype.playerMissedBall = function(paddle) {
-  paddle.score++;
+Game.prototype.playerWonRound = function(player) {
+
+  //if bot wins make him slower if loses make him faster
+  if (player === this.bot) {
+    this.bot.wonRound();
+  }
+  else {
+    this.bot.lostRound();
+  }
+  player.score++;
   this.ball.reset();
   this.missSound.play();
 }

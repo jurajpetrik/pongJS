@@ -21,6 +21,7 @@ Paddle.prototype.update = function()
 
   //don't go out of screen
   this.y = Math.min(Math.max(this.y, 0), game.height - this.height);
+  this.x = Math.min(Math.max(this.x, 0), game.width - this.width);
 }
 
 function Player()
@@ -87,4 +88,22 @@ Bot.prototype.update = function()
     this.yVelocity = - this.speed;
   }
   Paddle.prototype.update.apply(this, arguments);
+}
+
+Bot.prototype.wonRound = function(){
+  this.goSlower();
+}
+
+Bot.prototype.lostRound = function(){
+  this.goFaster();
+}
+
+
+Bot.prototype.goFaster = function() {
+  this.speed++;
+}
+
+Bot.prototype.goSlower = function() {
+  this.speed--;
+  this.speed = Math.min(0, this.speed);
 }

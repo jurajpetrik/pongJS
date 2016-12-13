@@ -36,7 +36,7 @@ Ball.prototype.update = function() {
   Entity.prototype.update.apply(this, arguments); //super
 
 
-  if (this.y > game.height- (this.height) || this.y < this.height)
+  if (this.y > game.height - (this.height) || this.y < this.height)
   {
     this.yVelocity *= -1;
     game.ballHitWall();
@@ -44,11 +44,11 @@ Ball.prototype.update = function() {
 
   if(this.x > (game.width-this.width))
   {
-    game.playerMissedBall(game.player);
+    game.playerWonRound(game.player);
   }
   if(this.x <0)
   {
-    game.playerMissedBall(game.bot);
+    game.playerWonRound(game.bot);
   }
 
   if(this.intersect(game.bot))
