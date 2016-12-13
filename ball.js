@@ -29,8 +29,8 @@ Ball.prototype.reset = function()
   this.x = game.width / 2 - this.width;
   this.y = game.height /2 - this.height;
 
-  this.yVelocity = 10;
-  this.xVelocity = 10
+  this.yVelocity = Math.random() > 0.5 ? 10 : - 10;
+  this.xVelocity = Math.random() > 0.5 ? 10 : - 10;
 }
 
 
