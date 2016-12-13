@@ -35,9 +35,11 @@ Ball.prototype.reset = function()
 Ball.prototype.update = function() {
   Entity.prototype.update.apply(this, arguments); //super
 
-  if (this.y > game.height- (this.height) || this.y < 0)
+
+  if (this.y > game.height- (this.height) || this.y < this.height)
   {
     this.yVelocity *= -1;
+    game.ballHitWall();
   }
 
   if(this.x > (game.width-this.width))
@@ -63,7 +65,7 @@ Ball.prototype.update = function() {
   if(hitter)
   {
     this.xVelocity *= -1.1;
-    game.ballHit();
+    game.ballHitPaddle(hitter);
   }
 
 }
