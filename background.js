@@ -1,15 +1,15 @@
-function Background() {}
+function Background() {
+  this.textDiv = document.getElementById('overlay');
+}
 
 Background.prototype.draw = function(context)
 {
   context.fillStyle = '#000';
   context.fillRect(0,0,game.width, game.height);
 
-  context.fillStyle = game.fillColor.toHex();
-  context.font = '40px monospace';
-
   var scoreText = game.player.score+' : '+game.bot.score;
-  context.fillText(scoreText, game.width/2,game.height/2);
+  this.textDiv.innerHTML = scoreText;
+  this.textDiv.style.color = game.fillColor.toHex();;
 
 }
 

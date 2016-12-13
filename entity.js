@@ -15,14 +15,14 @@ function Entity() {
 //entities are expected to override this method
 Entity.prototype.update = function()
 {
-	this.x += this.xVelocity;
-	this.y += this.yVelocity;
+  this.x += this.xVelocity;
+  this.y += this.yVelocity;
 }
 
 Entity.prototype.draw = function(context)
 {
-	context.fillStyle = game.fillColor.toHex();
-	context.fillRect(this.x,this.y, this.width, this.height);
+  context.fillStyle = game.fillColor.toHex();
+  context.fillRect(this.x,this.y, this.width, this.height);
 }
 
 //bounding box collision detection
@@ -30,9 +30,9 @@ Entity.prototype.draw = function(context)
 
 Entity.prototype.intersect = function(other)
 {
- return ( this.y + this.height > other.y &&
-         this.y < other.y + other.height &&
-         this.x + this.width > other.x &&
-         this.x < other.x + other.width);
+  return ( this.y + this.height > other.y &&
+    this.y < other.y + other.height &&
+    this.x + this.width > other.x &&
+    this.x < other.x + other.width);
 }
 
