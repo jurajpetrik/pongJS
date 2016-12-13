@@ -2,8 +2,8 @@ function Ball()
 {
   Entity.call(this);
 
-  this.width = 40;
-  this.height = 40;
+  this.width = 20;
+  this.height = 20;
   // this.fillColor = '#000000';
 
   this.reset();
