@@ -39,11 +39,11 @@ Player.prototype.update = function()
 {
 
 
-  if(game.keyPressed.up)
+  if(game.userInput.moveUp)
   {
     this.yVelocity = - this.speed;
   }
-  else if(game.keyPressed.down)
+  else if(game.userInput.moveDown)
   {
     this.yVelocity = this.speed;
   }

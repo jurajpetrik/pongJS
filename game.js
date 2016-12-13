@@ -4,10 +4,11 @@ function Game(canvas)
   this.context = canvas.getContext("2d");
   this.width = window.innerWidth;
   this.height = window.innerHeight;
+  this.paused = false;
 
   // Keep track of key states
 
-  this.keyPressed = {};
+  this.userInput = {};
 
   var self = this;
   $(canvas).on('keydown keyup', function(e) {
@@ -17,7 +18,7 @@ function Game(canvas)
     //if keyState was changed
     if(keyName)
     {
-      self.keyPressed[keyName] = e.type === 'keydown';
+      self.userInput[keyName] = e.type === 'keydown';
       e.preventDefault();
 
     }
@@ -26,13 +27,13 @@ function Game(canvas)
 
 //Key codes mapping
 Game.keys = {
-  32: 'space',
-  37: 'left',
-  38: 'up',
-  39: 'right',
-  40: 'down',
-  74: 'down',
-  75: 'up',
+  32: 'togglePause',
+  37: 'moveLeft',
+  38: 'moveUp',
+  39: 'moveRight',
+  40: 'moveDown',
+  74: 'moveDown',
+  75: 'moveUp',
 }
 
 Game.prototype.start = function() {
@@ -42,13 +43,22 @@ Game.prototype.start = function() {
     interval = 1000/fps;
 
   setInterval(function() {
-    self.update();
-    self.draw();
+      self.update();
+      self.draw();
   }
     ,interval);
 };
 
+Game.prototype.togglePause = function() {
+  this.paused = !this.paused;
+}
+
 Game.prototype.update = function() {
+  if (this.userInput.togglePause) {
+    this.togglePause();
+  }
+
+  if (this.paused) return;
   this.entities.forEach(function(entity) {
     if (entity.update)
     {
@@ -58,6 +68,7 @@ Game.prototype.update = function() {
 }
 
 Game.prototype.draw = function() {
+  if (this.paused) return;
   var self = this;
 
   this.entities.forEach(function(entity) {
