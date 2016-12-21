@@ -2,8 +2,8 @@ function Ball()
 {
   Entity.call(this);
 
-  this.width = 20;
-  this.height = 20;
+  this.width = 10;
+  this.height = 10;
 
   this.reset();
 
@@ -17,7 +17,7 @@ Ball.prototype.draw = function(context)
   context.fillStyle = game.fillColor.toHex();
 
   context.beginPath();
-  context.arc(this.x, this.y , this.width/2, 0, Math.PI*2, true);
+  context.arc(this.x, this.y , this.width, 0, Math.PI*2, true);
   context.closePath();
   context.fill();
 }
@@ -35,6 +35,20 @@ Ball.prototype.reset = function()
 Ball.prototype.update = function() {
   Entity.prototype.update.apply(this, arguments); //super
 
+  if(this.intersect(game.bot))
+  {
+    var hitter = game.bot;
+  }
+  else if (this.intersect(game.player))
+  {
+    var hitter = game.player;
+  }
+
+  if(hitter)
+  {
+    this.xVelocity *= -1.1;
+    game.ballHitPaddle(hitter);
+  }
 
   if (this.y > game.height - (this.height) || this.y < this.height)
   {
@@ -49,21 +63,6 @@ Ball.prototype.update = function() {
   if(this.x <0)
   {
     game.playerWonRound(game.bot);
-  }
-
-  if(this.intersect(game.bot))
-  {
-    var hitter = game.bot;
-  }
-  else if (this.intersect(game.player))
-  {
-    var hitter = game.player;
-  }
-
-  if(hitter)
-  {
-    this.xVelocity *= -1.1;
-    game.ballHitPaddle(hitter);
   }
 
 }
