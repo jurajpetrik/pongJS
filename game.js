@@ -6,6 +6,7 @@ function Game(canvas)
   this.height = window.innerHeight;
 
   this.paused = false;
+  this.muted = true;
   this.fillColor = new Color(173, 216, 230);
   this.bumpSound = new Audio("./bumpsound.wav"); // buffers automatically when created
   this.missSound = new Audio("./missSound.wav"); // buffers automatically when created
@@ -61,6 +62,12 @@ Game.prototype.start = function() {
 
 Game.prototype.togglePause = function() {
   this.paused = !this.paused;
+  if (this.paused) {
+    this.background.showMuteText();
+  }
+  else {
+    this.background.hideMuteText();
+  }
 }
 
 Game.prototype.update = function() {
@@ -89,12 +96,12 @@ Game.prototype.draw = function() {
 }
 
 Game.prototype.ballHitWall = function(paddle) {
-  this.bumpSound.play();
+  this.playSound(this.bumpSound);
 }
 
 Game.prototype.ballHitPaddle = function(paddle) {
   this.fillColor = randColor();
-  this.bumpSound.play();
+  this.playSound(this.bumpSound);
 }
 
 Game.prototype.playerWonRound = function(player) {
@@ -108,7 +115,13 @@ Game.prototype.playerWonRound = function(player) {
   }
   player.score++;
   this.ball.reset();
-  this.missSound.play();
+  this.playSound(this.missSound);
+}
+
+Game.prototype.playSound = function(sound) {
+  if (!this.muted) {
+    sound.play();
+  }
 }
 
 function randColor() {

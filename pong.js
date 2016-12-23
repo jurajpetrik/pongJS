@@ -18,7 +18,7 @@ var canvas = getFullCanvas();
 var game = new Game(canvas);
 
 game.entities = [
-    new Background(canvas),
+    game.background = new Background(canvas),
     game.ball = new Ball(),
     game.player = new Player(),
     game.bot = new Bot()
