@@ -1,5 +1,4 @@
-function Background() {
-  this.score = document.getElementById('score');
+function Background() { this.score = document.getElementById('score');
   this.muteText = document.getElementById('muteText');
   this.muteText.addEventListener("click", this.toggleMute.bind(this), false);
   this.hideMuteText();

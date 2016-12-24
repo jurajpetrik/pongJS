@@ -5,7 +5,6 @@ function Paddle()
   this.width = 15;
   this.height = 200;
 
-  this.y = game.height/2 - this.height/2;
   this.x = 20;
 
   this.score = 0;
@@ -28,13 +27,17 @@ function Player()
 {
   Paddle.call(this);
 
-  this.x = 20;
-  this.speed =15;
+  this.reset();
 }
-
 
 Player.prototype = Object.create(Paddle.prototype);
 Player.prototype.constructor = Player;
+
+Player.prototype.reset = function() {
+  this.x = 20;
+  this.y = game.height/2 - this.height/2;
+  this.speed =15;
+}
 
 Player.prototype.update = function()
 {
@@ -70,13 +73,17 @@ Player.prototype.update = function()
 function Bot ()
 {
   Paddle.call(this);
-  this.x = game.width - this.width - 20;
   this.speed = 7;
+  this.reset();
 }
 
 Bot.prototype = Object.create(Paddle.prototype);
 Bot.prototype.constructor = Bot;
 
+Bot.prototype.reset = function () {
+  this.x = game.width - this.width - 20;
+  this.y = game.height/2 - this.height/2;
+}
 Bot.prototype.update = function()
 {
   if(this.y < game.ball.y)

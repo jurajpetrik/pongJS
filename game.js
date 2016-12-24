@@ -66,7 +66,7 @@ Game.prototype.togglePause = function() {
     this.background.showMuteText();
   }
   else {
-    this.background.hideMuteText();
+
   }
 }
 
@@ -115,7 +115,12 @@ Game.prototype.playerWonRound = function(player) {
   }
   player.score++;
   this.ball.reset();
+  this.bot.reset();
+  this.player.reset();
   this.playSound(this.missSound);
+  // wait for a second
+  this.draw();
+  this.paused = true;
 }
 
 Game.prototype.playSound = function(sound) {

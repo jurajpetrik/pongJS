@@ -27,13 +27,13 @@ Ball.prototype.reset = function()
   this.x = game.width / 2 - this.width;
   this.y = game.height /2 - this.height;
 
-  this.yVelocity = Math.random() > 0.5 ? 10 : - 10;
-  this.xVelocity = Math.random() > 0.5 ? 10 : - 10;
+  this.speed = 10;
+  this.yVelocity = Math.random() > 0.5 ? this.speed : -1 * this.speed;
+  this.xVelocity = Math.random() > 0.5 ? this.speed : -1 * this.speed;
 }
 
 
 Ball.prototype.update = function() {
-  Entity.prototype.update.apply(this, arguments); //super
 
   if(this.intersect(game.bot))
   {
@@ -65,4 +65,5 @@ Ball.prototype.update = function() {
     game.playerWonRound(game.bot);
   }
 
+  Entity.prototype.update.apply(this, arguments); //super
 }

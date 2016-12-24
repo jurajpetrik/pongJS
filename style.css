@@ -16,7 +16,7 @@ canvas { display:block; } /* To remove the scrollbars */
 
 #overlay {
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   font: 30px monospace;
