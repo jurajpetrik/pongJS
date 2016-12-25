@@ -53,8 +53,8 @@ Game.prototype.start = function() {
     interval = 1000/fps;
 
   setInterval(function() {
-    self.draw();
     self.update();
+    self.draw();
     self.userInterrupt = {};
   }
     ,interval);
@@ -66,7 +66,7 @@ Game.prototype.togglePause = function() {
     this.background.showMuteText();
   }
   else {
-
+    this.background.hideMuteText();
   }
 }
 
@@ -118,9 +118,8 @@ Game.prototype.playerWonRound = function(player) {
   this.bot.reset();
   this.player.reset();
   this.playSound(this.missSound);
-  // wait for a second
   this.draw();
-  this.paused = true;
+  this.togglePause();
 }
 
 Game.prototype.playSound = function(sound) {

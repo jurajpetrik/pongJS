@@ -34,11 +34,13 @@ Ball.prototype.reset = function()
 
 
 Ball.prototype.update = function() {
+  Entity.prototype.update.apply(this, arguments); //super
 
   if(this.intersect(game.bot))
   {
     var hitter = game.bot;
   }
+
   else if (this.intersect(game.player))
   {
     var hitter = game.player;
@@ -50,20 +52,23 @@ Ball.prototype.update = function() {
     game.ballHitPaddle(hitter);
   }
 
-  if (this.y > game.height - (this.height) || this.y < this.height)
-  {
-    this.yVelocity *= -1;
-    game.ballHitWall();
-  }
+  else {
 
-  if(this.x > (game.width-this.width))
-  {
-    game.playerWonRound(game.player);
-  }
-  if(this.x <0)
-  {
-    game.playerWonRound(game.bot);
-  }
+    if (this.y > game.height - (this.height) || this.y < this.height)
+    {
+      this.yVelocity *= -1;
+      game.ballHitWall();
+    }
 
-  Entity.prototype.update.apply(this, arguments); //super
+    if(this.x > (game.width-this.width))
+    {
+      game.playerWonRound(game.player);
+    }
+
+    if(this.x <0)
+    {
+      game.playerWonRound(game.bot);
+    }
+
+  }
 }
