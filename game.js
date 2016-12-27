@@ -6,7 +6,7 @@ function Game(canvas)
   this.height = window.innerHeight;
 
   this.paused = false;
-  this.muted = true;
+  this.muted = false;
   this.fillColor = new Color(173, 216, 230);
   this.bumpSound = new Audio("./bumpsound.wav"); // buffers automatically when created
   this.missSound = new Audio("./missSound.wav"); // buffers automatically when created
@@ -53,8 +53,8 @@ Game.prototype.start = function() {
     interval = 1000/fps;
 
   setInterval(function() {
-    self.update();
     self.draw();
+    self.update();
     self.userInterrupt = {};
   }
     ,interval);
