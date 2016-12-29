@@ -7,6 +7,7 @@ function Ball()
 
   this.reset();
 
+  this.MAX_SPEED = 16;//more than this gives a bug where the ball goes "through" the paddle
 }
 
 Ball.prototype = Object.create(Entity.prototype);
@@ -48,7 +49,12 @@ Ball.prototype.update = function() {
 
   if(hitter)
   {
-    this.xVelocity *= -1.1;
+    if (Math.abs(this.xVelocity) < this.MAX_SPEED) {
+      this.xVelocity *= -1.1;
+    }
+    else {
+      this.xVelocity *= -1;
+    }
     game.ballHitPaddle(hitter);
   }
 
